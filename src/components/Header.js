@@ -32,6 +32,10 @@ const useStyles = makeStyles(theme=>({
         paddingBottom:"0.2em",
         width:"25em"
     },
+    appBar:{
+        zIndex: theme.zIndex.drawer + 1,
+        
+    },
     searchButton:{
         backgroundColor:"#f8f8f8",
         borderRadius:0,
@@ -49,7 +53,7 @@ const Header = ()=>{
     const classes = useStyles();
     return(
         <React.Fragment>
-            <AppBar color="transparent" position="fixed">
+            <AppBar className={classes.appBar} color="transparent" position="fixed">
                 <Toolbar className={classes.toolbar}>
                     <IconButton edge="start" className={classes.menuButton} color="transparent" aria-label="menu">
                         <MenuIcon />

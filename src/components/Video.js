@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme=>({
         color:"#606060",
         fontWeight:"700",
         fontSize:"0.9em",
+        lineHeight:"1.2em"
     }
 }))
 
@@ -52,7 +53,7 @@ const Video = (props)=>{
                         <Grid item>
                             <Grid container direction="column">
                                 <Grid item>
-                                <Avatar src={props.avatar} alt="avat"></Avatar>
+                                        <Avatar src={props.avatar} alt="avat"></Avatar>
                                 </Grid>
                             </Grid>
                         </Grid>

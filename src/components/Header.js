@@ -5,9 +5,9 @@ import { Toolbar } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
-import {deepOrange} from '@material-ui/core/colors'
+import {deepOrange} from '@material-ui/core/colors';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 
 import SearchIcon from '@material-ui/icons/Search';
@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme=>({
         width:"25em"
     },
     appBar:{
+        // zIndex: theme.zIndex.modal + 1,
         zIndex: theme.zIndex.drawer + 1,
         
     },
@@ -46,23 +47,43 @@ const useStyles = makeStyles(theme=>({
     },
     avatar:{
         backgroundColor:deepOrange[500]
+    },
+    toolbarMargin:{
+       
     }
 }))
+
+function ElevationScroll(props) {
+    const { children, window } = props;
+    // Note that you normally won't need to set the window ref as useScrollTrigger
+    // will default to window.
+    // This is only being set here because the demo is in an iframe.
+    const trigger = useScrollTrigger({
+      disableHysteresis: true,
+      threshold: 0,
+      target: window ? window() : undefined,
+    });
+  
+    return React.cloneElement(children, {
+      elevation: trigger ? 4 : 0,
+    });
+  }
 
 const Header = ()=>{
     const classes = useStyles();
     return(
         <React.Fragment>
-            <AppBar className={classes.appBar} color="transparent" position="fixed">
+        <ElevationScroll>
+            <AppBar className={classes.appBar} color="white"  position="fixed">
                 <Toolbar className={classes.toolbar}>
-                    <IconButton edge="start" className={classes.menuButton} color="transparent" aria-label="menu">
+                    <IconButton edge="start" className={classes.menuButton} aria-label="menu">
                         <MenuIcon />
                     </IconButton>
                     <Button style={{padding:0,marginRight:"15em"}}>
                         <img src={logo} className={classes.logo} alt="logo" style={{width:"6em" ,height:"3em"}}></img>
                     </Button>
                     <input placeholder="Search" className={classes.inputField}></input>
-                    <Button borderColor="#d3d3d3" className={classes.searchButton}>
+                    <Button  className={classes.searchButton}>
                         <SearchIcon fontSize="small" ></SearchIcon>
                     </Button>
                     <IconButton style={{marginLeft:"auto"}}>
@@ -79,6 +100,8 @@ const Header = ()=>{
                     </IconButton>
                 </Toolbar>
             </AppBar>
+            </ElevationScroll>
+            <div className={classes.toolbarMargin}/>
     </React.Fragment>
     )
 }

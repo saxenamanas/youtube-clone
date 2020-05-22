@@ -10,7 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 
 import HomeIcon from '@material-ui/icons/Home';
-import { Toolbar, Typography, ListItemAvatar } from '@material-ui/core';
+import { Toolbar, ListItemAvatar } from '@material-ui/core';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme=>({
       },
       drawerPaper: {
         width: 240,
+        border:0,
       },
       drawerContainer: {
         overflow: 'auto',
